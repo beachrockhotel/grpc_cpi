@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package ufo.v1;
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+option go_package = "github.com/beachrockhotel/grpc_cpi/pkg/proto/ufo/v1"
+
+// SightingInfo базовая информация о наблюдении НЛО
+message SightingInfo {
+  // observed_at время наблюдения НЛО
+  google.protobuf.Timestamp observed_at = 1;
+
+  // location место наблюдения
+  string location = 2;
+
+  // description описание наблюдаемого объекта
+  string description = 3;
+
+  // color цвет объекта (опционально)
+  google.protobuf.StringValue color = 4;
+
+  // sound признак наличия звука (опционально)
+  google.protobuf.BoolValue sound = 5;
+
+  //duration_seconds продолжительность наблюдения в секундах
+  google.protobuf.Int32Value duration_seconds = 6;
+}
+
+// Sighting представляет полную информацию о наблюдении НЛО
+message Sighting {
+  // uuid уникальный идентификатор наблюдения
+  string uuid = 1;
+
+  // Общая информация о наблюдении
+  SightingInfo info = 2;
+
+  // created_at время создания записи
+  google.protobuf.Timestamp created_at = 3;
+
+  // updated_at врем я последнего обновления записи
+  google.protobuf.Timestamp updated_at = 4;
+
+  // deleted_at время удаления записи (опционально)
+  google.protobuf.Timestamp deleted_at = 5;
+}
